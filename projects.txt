@@ -1,0 +1,21 @@
+{
+  "name": "iOS App",
+  "creator": "Luis Arambula",
+  "date": 2011-10-05T14:48:00.000+00:00,
+  "updates": [{
+    "title" : "Finished views",
+    "points" : ["Home view", "Settings View"],
+    "date" : 2011-11-05T14:48:00.000+00:00
+  },
+  {
+    "title" : "Finished backend",
+    "points" : ["Connected to MongoDB", "Queries successful"],
+    "date" : 2011-10-05T14:48:00.000+00:00
+  }]
+},
+{
+  "name": "iOS App",
+  "creator": "Luis Arambula",
+  "date": "12/09/2022",
+  "updates": []
+}
