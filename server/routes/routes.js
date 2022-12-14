@@ -32,8 +32,8 @@ app.get("/api/projects", verify, async (req, res) => {
 
 app.get("/api/projects/:id", verify, async (req, res) => {
   id = req.params.id;
-  project = Project.findById(id);
-  res.send(project);
+  project = await Project.findById(id);
+  res.json(project);
 });
 
 app.get("/api/projects/name/:name", verify, async (req, res) => {
@@ -73,7 +73,7 @@ app.post("/api/projects/edit/:id", verify, async (req, res) => {
   res.send(ans);
 });
 
-app.post("/api/projects/delete/:id", verify, async (req, res) => {
+app.get("/api/projects/delete/:id", verify, async (req, res) => {
   id = req.params.id;
   let ans = await Project.deleteOne({ _id: id });
   res.send(ans);
@@ -81,43 +81,45 @@ app.post("/api/projects/delete/:id", verify, async (req, res) => {
 
 app.post("/login", async function (req, res) {
   let { email, password } = req.body;
+  console.log("received", email, password);
   let user = await User.findOne({ email: email });
 
   if (!user) {
-    res.send("User doesn't exist");
+    res.send({ status: "NotFound" });
   } else {
     let valid = await user.validatePassword(password);
     if (valid) {
       let token = jwt.sign(
         { id: user.email, permission: true },
         process.env.SECRET,
-        { expiresIn: "1h" }
+        { expiresIn: "7d" }
       );
       res.cookie("token", token, { httpOnly: true });
-      res.send("Login successful");
+      res.send({ status: "Success" });
     } else {
-      res.send("Incorrect Password");
+      console.log("incorrect password");
+      res.send({ status: "WrongPassword" });
     }
   }
 });
 
 app.post("/register", async function (req, res) {
   let user = new User(req.body);
-  let previousUser = User.findOne({ email: user.email });
+  let previousUser = await User.findOne({ email: user.email });
   if (previousUser) {
-    res.send("User already exists");
+    res.json({ status: "User already exists" });
   } else {
     user.password = user.encryptPassword(user.password);
 
     await user.save();
 
-    res.send("User created");
+    res.json({ status: "Success" });
   }
 });
 
 app.get("/logout", async (req, res) => {
   res.clearCookie("token");
-  res.send("User logged out");
+  res.json({ status: "Success" });
 });
 
 module.exports = app;
