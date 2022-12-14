@@ -2,13 +2,13 @@
 
 ## Setup API
 
-- `cd /server`
+- `cd server`
 - Install dependencies `npm install`
 - Start the server using `node server.js`
 
 ## Setup Client
 
-- `cd /client/my-app`
+- `cd client/my-app`
 - Install dependencies `npm install`
 - Start the client using `npm start`
 
