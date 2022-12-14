@@ -88,3 +88,4 @@
 
 - Creating new projects
 - Editing projects
+- Filtering
