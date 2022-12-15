@@ -10,7 +10,7 @@ import {
 
 const ProjectView = ({ projectData }) => {
   console.log(projectData.updates);
-  return (
+  return projectData ? (
     <Box mb={10}>
       <Heading>{projectData.name}</Heading>
       <Text mt={10}>{projectData.creator}</Text>
@@ -26,7 +26,7 @@ const ProjectView = ({ projectData }) => {
         ))}
       </UnorderedList>
     </Box>
-  );
+  ) : null;
 };
 
 export default ProjectView;

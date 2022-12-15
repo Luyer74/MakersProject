@@ -37,34 +37,99 @@ app.get("/api/projects/:id", verify, async (req, res) => {
 });
 
 app.get("/api/projects/name/:name", verify, async (req, res) => {
-  project = await Project.find({ name: req.params.name });
-  res.json(project);
+  const { page = 1, limit = 2 } = req.query;
+
+  try {
+    const allProjects = await Project.find({ name: req.params.name })
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+
+    const count = await Project.count();
+
+    res.json({
+      allProjects,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 app.get("/api/projects/creator/:creator", verify, async (req, res) => {
-  project = await Project.find({ creator: req.params.creator });
-  res.json(project);
+  const { page = 1, limit = 2 } = req.query;
+
+  console.log(req.params.creator);
+
+  try {
+    const allProjects = await Project.find({ creator: req.params.creator })
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+
+    const count = await Project.count({ creator: req.params.creator });
+
+    res.json({
+      allProjects,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
-app.get("/api/projects/date", verify, async (req, res) => {
+app.get("/api/projects/date/getDate", verify, async (req, res) => {
   let { startDate, endDate } = req.query;
   startDate = Date.parse(startDate);
   endDate = Date.parse(endDate);
   if (!startDate || !endDate) {
-    res.json("Invalid date");
+    res.json({ status: "Invalid" });
   } else {
-    projects = await Project.find({
-      date: { $gte: startDate, $lte: endDate },
-    });
-    res.json(projects);
+    const { page = 1, limit = 2 } = req.query;
+
+    console.log(req.params.creator);
+
+    try {
+      const allProjects = await Project.find({
+        date: { $gte: startDate, $lte: endDate },
+      })
+        .limit(limit * 1)
+        .skip((page - 1) * limit)
+        .exec();
+
+      const count = await Project.count({
+        date: { $gte: startDate, $lte: endDate },
+      });
+
+      res.json({
+        allProjects,
+        totalPages: Math.ceil(count / limit),
+        currentPage: page,
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
   }
 });
 
-app.post("/api/projects/create", verify, async (req, res) => {
-  Project.insertMany([req.body], (err) => {
-    console.log(err);
+app.post("/api/projects/create/createProject", verify, async (req, res) => {
+  const result = new Project({
+    name: req.body.name,
+    creator: req.body.creator,
+    date: req.body.date,
+    updates: req.body.updates,
   });
-  res.send("insert successful!");
+  try {
+    Project.insertMany([result], (err) => {
+      console.log(err);
+    });
+    res.json({ status: "Success" });
+  } catch (e) {
+    console.log(e);
+    res.json({ status: e });
+  }
 });
 
 app.post("/api/projects/edit/:id", verify, async (req, res) => {

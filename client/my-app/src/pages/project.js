@@ -9,7 +9,7 @@ const Project = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
   const project_url = 'http://localhost:5005/api/projects/' + projectId;
-  console.log(project_url);
+  console.log('project_url', project_url);
 
   const navigate = useNavigate();
 

@@ -6,18 +6,32 @@ import Project from '../pages/project';
 import Login from '../pages/login';
 import Signup from '../pages/signup';
 import Home from '../pages/home';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import Search from '../pages/search';
+import NavBar from '../Components/navbar';
+import Create from '../pages/create';
 
 const MainRouter = () => {
+  const projectsURL = 'http://localhost:5005/api/projects';
   return (
     <Box as="main" pb={8}>
-      <ColorModeSwitcher></ColorModeSwitcher>
       <Router>
+        <NavBar></NavBar>
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
           <Route path="/register" element={<Signup></Signup>}></Route>
-          <Route path="/projects" element={<Projects></Projects>}></Route>
+          <Route path="/create" element={<Create></Create>}></Route>
+          <Route
+            path="/projects"
+            element={
+              <Projects url={projectsURL} title={'All Projects'}></Projects>
+            }
+          ></Route>
+          <Route path="/search" element={<Search></Search>}></Route>
+          <Route
+            path="/search/:projectId"
+            element={<Project></Project>}
+          ></Route>
           <Route
             path="/projects/:projectId"
             element={<Project></Project>}

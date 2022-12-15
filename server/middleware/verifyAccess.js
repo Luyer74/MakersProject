@@ -7,7 +7,6 @@ function verifyToken(req, res, next) {
     return res.json({ status: "NotLogged" });
   } else {
     jwt.verify(token, process.env.SECRET, function (err, data) {
-      console.log("DATA", data);
       if (err) {
         console.log(err);
         return res.json({ status: "TokenExpired" });

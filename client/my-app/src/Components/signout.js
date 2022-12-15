@@ -16,7 +16,7 @@ const Signout = () => {
   };
 
   return (
-    <Box>
+    <Box mt={10}>
       <Button onClick={logout}>Sign Out</Button>
     </Box>
   );
