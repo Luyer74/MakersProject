@@ -134,8 +134,12 @@ app.post("/api/projects/create/createProject", verify, async (req, res) => {
 
 app.post("/api/projects/edit/:id", verify, async (req, res) => {
   id = req.params.id;
-  let ans = await Project.findOneAndUpdate({ _id: id }, req.body);
-  res.send(ans);
+  try {
+    let ans = await Project.findOneAndUpdate({ _id: id }, req.body);
+    res.json({ status: "Success" });
+  } catch (e) {
+    res.json({ status: "error" });
+  }
 });
 
 app.get("/api/projects/delete/:id", verify, async (req, res) => {
