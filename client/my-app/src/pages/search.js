@@ -14,25 +14,6 @@ const Search = () => {
     }
   };
 
-  useEffect(() => {
-    const checkLogin = () => {
-      fetch('https://makers-project-api.onrender.com/checkLogin', {
-        credentials: 'include',
-      })
-        .then(res => res.json())
-        .then(status => handleStatus(status));
-    };
-    checkLogin();
-  }, []);
-
-  const handleSearch = data => {
-    let apiUrl = null;
-    if (data) {
-      apiUrl = constructURL(data);
-    }
-    setHasSearched(apiUrl);
-  };
-
   const constructURL = data => {
     let url = 'https://makers-project-api.onrender.com/api/projects/';
     if ('name' in data) {

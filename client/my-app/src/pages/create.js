@@ -18,23 +18,6 @@ const Create = () => {
   const [updates, setUpdates] = useState([{ title: '', points: [''] }]);
   const navigate = useNavigate();
 
-  const handleStatus = status => {
-    if (status.status != 'OK') {
-      navigate('/');
-    }
-  };
-
-  useEffect(() => {
-    const checkLogin = () => {
-      fetch('https://makers-project-api.onrender.com/checkLogin', {
-        credentials: 'include',
-      })
-        .then(res => res.json())
-        .then(status => handleStatus(status));
-    };
-    checkLogin();
-  }, []);
-
   const addUpdate = e => {
     let temp = [...updates];
     temp.push({ title: '', points: [''] });
