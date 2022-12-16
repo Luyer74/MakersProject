@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   FormControl,
@@ -18,7 +18,6 @@ const Create = () => {
   const [updates, setUpdates] = useState([{ title: '', points: [''] }]);
   const navigate = useNavigate();
 
-<<<<<<< HEAD
   const handleStatus = status => {
     if (status.status != 'OK') {
       navigate('/');
@@ -27,7 +26,7 @@ const Create = () => {
 
   useEffect(() => {
     const checkLogin = () => {
-      fetch('https://makers-project-api.onrender.com/checkLogin', {
+      fetch('http://localhost:5005/checkLogin', {
         credentials: 'include',
       })
         .then(res => res.json())
@@ -36,8 +35,6 @@ const Create = () => {
     checkLogin();
   }, []);
 
-=======
->>>>>>> parent of 306b8d3 (fix auth and update README)
   const addUpdate = e => {
     let temp = [...updates];
     temp.push({ title: '', points: [''] });
@@ -78,7 +75,7 @@ const Create = () => {
     e.preventDefault();
     try {
       let res = await fetch(
-        'http://localhost:5005/projects/create/createProject',
+        'http://localhost:5005/api/projects/create/createProject',
         {
           method: 'POST',
           credentials: 'include',

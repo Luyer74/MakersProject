@@ -24,21 +24,18 @@ const Signup = () => {
   let handleSubmit = async e => {
     e.preventDefault();
     try {
-      let res = await fetch(
-        'https://makers-project-api.onrender.com/register',
-        {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            password: password,
-          }),
-        }
-      );
+      let res = await fetch('http://localhost:5005/register', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+        }),
+      });
       let response = await res.json();
       let status = response.status;
       if (status === 'Success') {

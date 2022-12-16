@@ -10,7 +10,7 @@ const Project = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
   const [edit, setEdit] = useState(false);
-  const project_url = 'http://localhost:5005/projects/' + projectId;
+  const project_url = 'http://localhost:5005/api/projects/' + projectId;
   console.log('project_url', project_url);
 
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Project = () => {
 
   useEffect(() => {
     const loadData = () => {
-      fetch('http://localhost:5005/projects/' + projectId, {
+      fetch('http://localhost:5005/api/projects/' + projectId, {
         credentials: 'include',
       })
         .then(res => res.json())

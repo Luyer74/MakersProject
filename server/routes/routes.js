@@ -148,6 +148,10 @@ app.get("/api/projects/delete/:id", verify, async (req, res) => {
   res.send(ans);
 });
 
+app.get("/checkLogin", verify, async (req, res) => {
+  res.json({ status: "OK" });
+});
+
 app.post("/login", async function (req, res) {
   let { email, password } = req.body;
   console.log("received", email, password);

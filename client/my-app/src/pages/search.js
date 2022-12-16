@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchForm from '../Components/searchForm';
 import { Box, Button } from '@chakra-ui/react';
 import Projects from './projects';
@@ -8,7 +8,6 @@ const Search = () => {
   const [hasSearched, setHasSearched] = useState(null);
   const navigate = useNavigate();
 
-<<<<<<< HEAD
   const handleStatus = status => {
     if (status.status != 'OK') {
       navigate('/');
@@ -17,7 +16,7 @@ const Search = () => {
 
   useEffect(() => {
     const checkLogin = () => {
-      fetch('https://makers-project-api.onrender.com/checkLogin', {
+      fetch('http://localhost:5005/checkLogin', {
         credentials: 'include',
       })
         .then(res => res.json())
@@ -26,8 +25,6 @@ const Search = () => {
     checkLogin();
   }, []);
 
-=======
->>>>>>> parent of 306b8d3 (fix auth and update README)
   const handleSearch = data => {
     let apiUrl = null;
     if (data) {
@@ -37,7 +34,7 @@ const Search = () => {
   };
 
   const constructURL = data => {
-    let url = 'http://localhost:5005/projects/';
+    let url = 'http://localhost:5005/api/projects/';
     if ('name' in data) {
       url += 'name/' + encodeURIComponent(data.name);
     } else if ('creator' in data) {

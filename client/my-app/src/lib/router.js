@@ -11,7 +11,7 @@ import NavBar from '../Components/navbar';
 import Create from '../pages/create';
 
 const MainRouter = () => {
-  const projectsURL = 'http://localhost:5005/projects';
+  const projectsURL = 'http://localhost:5005/api/projects';
   return (
     <Box as="main" pb={8}>
       <Router>

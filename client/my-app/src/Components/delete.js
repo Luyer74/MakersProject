@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const DeleteButton = ({ id }) => {
   const navigate = useNavigate();
   const logout = () => {
-    fetch('http://localhost:5005/projects/delete/' + id, {
+    fetch('http://localhost:5005/api/projects/delete/' + id, {
       credentials: 'include',
     })
       .then(res => res.json())
