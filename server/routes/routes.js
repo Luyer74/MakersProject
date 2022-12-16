@@ -1,6 +1,6 @@
 const Project = require("../models/project.model");
 const User = require("../models/user.model");
-const verify = require("../middleware/verifyAccess");
+cons = require("../middlewarAccess");
 const express = require("express");
 const app = express();
 const jwt = require("jsonwebtoken");
@@ -9,7 +9,7 @@ app.get("/api/hello", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/api/projects", verify, async (req, res) => {
+app.get("/api/projects", async (req, res) => {
   const { page = 1, limit = 2 } = req.query;
 
   try {
@@ -30,13 +30,13 @@ app.get("/api/projects", verify, async (req, res) => {
   }
 });
 
-app.get("/api/projects/:id", verify, async (req, res) => {
+app.get("/api/projects/:id", async (req, res) => {
   id = req.params.id;
   project = await Project.findById(id);
   res.json(project);
 });
 
-app.get("/api/projects/name/:name", verify, async (req, res) => {
+app.get("/api/projects/name/:name", async (req, res) => {
   const { page = 1, limit = 2 } = req.query;
 
   try {
@@ -57,7 +57,7 @@ app.get("/api/projects/name/:name", verify, async (req, res) => {
   }
 });
 
-app.get("/api/projects/creator/:creator", verify, async (req, res) => {
+app.get("/api/projects/creator/:creator", async (req, res) => {
   const { page = 1, limit = 2 } = req.query;
 
   console.log(req.params.creator);
@@ -80,7 +80,7 @@ app.get("/api/projects/creator/:creator", verify, async (req, res) => {
   }
 });
 
-app.get("/api/projects/date/getDate", verify, async (req, res) => {
+app.get("/api/projects/date/getDate", async (req, res) => {
   let { startDate, endDate } = req.query;
   startDate = Date.parse(startDate);
   endDate = Date.parse(endDate);
@@ -114,7 +114,7 @@ app.get("/api/projects/date/getDate", verify, async (req, res) => {
   }
 });
 
-app.post("/api/projects/create/createProject", verify, async (req, res) => {
+app.post("/api/projects/create/createProject", async (req, res) => {
   const result = new Project({
     name: req.body.name,
     creator: req.body.creator,
@@ -132,7 +132,7 @@ app.post("/api/projects/create/createProject", verify, async (req, res) => {
   }
 });
 
-app.post("/api/projects/edit/:id", verify, async (req, res) => {
+app.post("/api/projects/edit/:id", async (req, res) => {
   id = req.params.id;
   try {
     let ans = await Project.findOneAndUpdate({ _id: id }, req.body);
@@ -142,13 +142,13 @@ app.post("/api/projects/edit/:id", verify, async (req, res) => {
   }
 });
 
-app.get("/api/projects/delete/:id", verify, async (req, res) => {
+app.get("/api/projects/delete/:id", async (req, res) => {
   id = req.params.id;
   let ans = await Project.deleteOne({ _id: id });
   res.send(ans);
 });
 
-app.get("/checkLogin", verify, async (req, res) => {
+app.get("/checkLogin", async (req, res) => {
   res.json({ status: "OK" });
 });
 
