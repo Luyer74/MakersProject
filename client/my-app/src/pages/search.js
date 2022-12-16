@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SearchForm from '../Components/searchForm';
 import { Box, Button } from '@chakra-ui/react';
 import Projects from './projects';
@@ -8,6 +8,7 @@ const Search = () => {
   const [hasSearched, setHasSearched] = useState(null);
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   const handleStatus = status => {
     if (status.status != 'OK') {
       navigate('/');
@@ -25,6 +26,8 @@ const Search = () => {
     checkLogin();
   }, []);
 
+=======
+>>>>>>> parent of 306b8d3 (fix auth and update README)
   const handleSearch = data => {
     let apiUrl = null;
     if (data) {

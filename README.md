@@ -56,17 +56,15 @@
 
 `/api/projects/creator:creator` : Returns filtered projects by creator
 
-`/api/projects/date/getDate?startDate=2019-01-01&endDate=2022-01-01` : Returns all projects from a date range
+`/api/projects/date?startDate=2019-01-01&endDate=2022-01-01` : Returns all projects from a date range
 
 `/logout` : Logs out the current user
 
 `/api/projects/delete/:id` : Delete a specific project using its ID
 
-`/checkLogin` : Returns OK only if user is logged in
-
 ### `POST` requests
 
-`/api/projects/create/createProject` : Creates a new project from a JSON object
+`/api/projects/create` : Creates a new project from a JSON object
 
 `/api/projects/edit/:id` : Edits a specific project using its ID
 
@@ -85,7 +83,9 @@
 - Pagination view
 - Sign out
 - Delete project
-- Search with filters
-- Pagination for filtering results
-- Create new projects
-- Edit projects
+
+## Interface missing features
+
+- Creating new projects
+- Editing projects
+- Filtering

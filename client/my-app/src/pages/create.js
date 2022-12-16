@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   FormControl,
@@ -18,6 +18,7 @@ const Create = () => {
   const [updates, setUpdates] = useState([{ title: '', points: [''] }]);
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   const handleStatus = status => {
     if (status.status != 'OK') {
       navigate('/');
@@ -35,6 +36,8 @@ const Create = () => {
     checkLogin();
   }, []);
 
+=======
+>>>>>>> parent of 306b8d3 (fix auth and update README)
   const addUpdate = e => {
     let temp = [...updates];
     temp.push({ title: '', points: [''] });
