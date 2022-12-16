@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Signout = () => {
   const navigate = useNavigate();
   const logout = () => {
-    fetch('http://localhost:5005/logout', {
+    fetch('https://makers-project-api.onrender.com/logout', {
       credentials: 'include',
     })
       .then(res => res.json())

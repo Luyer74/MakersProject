@@ -16,7 +16,7 @@ const Search = () => {
 
   useEffect(() => {
     const checkLogin = () => {
-      fetch('http://localhost:5005/checkLogin', {
+      fetch('https://makers-project-api.onrender.com/checkLogin', {
         credentials: 'include',
       })
         .then(res => res.json())
@@ -34,7 +34,7 @@ const Search = () => {
   };
 
   const constructURL = data => {
-    let url = 'http://localhost:5005/api/projects/';
+    let url = 'https://makers-project-api.onrender.com/api/projects/';
     if ('name' in data) {
       url += 'name/' + encodeURIComponent(data.name);
     } else if ('creator' in data) {

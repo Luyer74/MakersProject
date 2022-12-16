@@ -26,7 +26,7 @@ const Create = () => {
 
   useEffect(() => {
     const checkLogin = () => {
-      fetch('http://localhost:5005/checkLogin', {
+      fetch('https://makers-project-api.onrender.com/checkLogin', {
         credentials: 'include',
       })
         .then(res => res.json())
@@ -75,7 +75,7 @@ const Create = () => {
     e.preventDefault();
     try {
       let res = await fetch(
-        'http://localhost:5005/api/projects/create/createProject',
+        'https://makers-project-api.onrender.com/api/projects/create/createProject',
         {
           method: 'POST',
           credentials: 'include',

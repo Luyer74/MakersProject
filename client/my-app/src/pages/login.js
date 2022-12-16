@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
     console.log('sending', email, password);
     try {
-      let res = await fetch('http://localhost:5005/login', {
+      let res = await fetch('https://makers-project-api.onrender.com/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
