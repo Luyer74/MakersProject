@@ -8,10 +8,12 @@ const Search = () => {
   const [hasSearched, setHasSearched] = useState(null);
   const navigate = useNavigate();
 
-  const handleStatus = status => {
-    if (status.status != 'OK') {
-      navigate('/');
+  const handleSearch = data => {
+    let apiUrl = null;
+    if (data) {
+      apiUrl = constructURL(data);
     }
+    setHasSearched(apiUrl);
   };
 
   const constructURL = data => {
