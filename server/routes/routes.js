@@ -167,7 +167,7 @@ app.post("/login", async function (req, res) {
         process.env.SECRET,
         { expiresIn: "7d" }
       );
-      res.cookie("token", token);
+      res.cookie("token", token, { httpOnly: true });
       res.send({ status: "Success" });
     } else {
       console.log("incorrect password");

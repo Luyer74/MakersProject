@@ -13,10 +13,7 @@ mongoose
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://makers-project-client.onrender.com",
-    ],
+    origin: ["http://localhost:3000"],
     credentials: true,
   })
 );

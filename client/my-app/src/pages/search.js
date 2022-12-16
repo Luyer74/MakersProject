@@ -34,7 +34,7 @@ const Search = () => {
   };
 
   const constructURL = data => {
-    let url = 'https://makers-project-api.onrender.com/api/projects/';
+    let url = 'http://localhost:5005/projects/';
     if ('name' in data) {
       url += 'name/' + encodeURIComponent(data.name);
     } else if ('creator' in data) {

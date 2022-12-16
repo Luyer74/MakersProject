@@ -10,8 +10,7 @@ const Project = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState(null);
   const [edit, setEdit] = useState(false);
-  const project_url =
-    'https://makers-project-api.onrender.com/api/projects/' + projectId;
+  const project_url = 'http://localhost:5005/projects/' + projectId;
   console.log('project_url', project_url);
 
   const navigate = useNavigate();
@@ -30,12 +29,9 @@ const Project = () => {
 
   useEffect(() => {
     const loadData = () => {
-      fetch(
-        'https://makers-project-api.onrender.com/api/projects/' + projectId,
-        {
-          credentials: 'include',
-        }
-      )
+      fetch('http://localhost:5005/projects/' + projectId, {
+        credentials: 'include',
+      })
         .then(res => res.json())
         .then(projectData => handleRequest(projectData));
     };

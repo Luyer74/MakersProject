@@ -63,8 +63,7 @@ const Edit = ({
     e.preventDefault();
     try {
       let res = await fetch(
-        'https://makers-project-api.onrender.com/api/projects/edit/' +
-          projectId,
+        'http://localhost:5005/projects/edit/' + projectId,
         {
           method: 'POST',
           credentials: 'include',
