@@ -12,6 +12,15 @@
 - Install dependencies `npm install`
 - Start the client using `npm start`
 
+## Deployed Version
+
+The app is deployed on Render, since render can't offer http-cookie support on their free domain, authentication is not fully supported on the deployed version.
+You can find it on [makers-project-client.onrender.com](https://makers-project-client.onrender.com)
+
+## Local version
+
+The local version of the app is in `local` branch and has full support for authentication. Follow instructions above to setup.
+
 ## Stack
 
 - MongoDB
