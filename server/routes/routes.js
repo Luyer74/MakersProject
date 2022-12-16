@@ -1,6 +1,5 @@
 const Project = require("../models/project.model");
 const User = require("../models/user.model");
-cons = require("../middlewarAccess");
 const express = require("express");
 const app = express();
 const jwt = require("jsonwebtoken");
