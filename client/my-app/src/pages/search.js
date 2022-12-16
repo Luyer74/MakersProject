@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchForm from '../Components/searchForm';
 import { Box, Button } from '@chakra-ui/react';
 import Projects from './projects';
@@ -7,6 +7,23 @@ import { useNavigate } from 'react-router-dom';
 const Search = () => {
   const [hasSearched, setHasSearched] = useState(null);
   const navigate = useNavigate();
+
+  const handleStatus = status => {
+    if (status.status != 'OK') {
+      navigate('/');
+    }
+  };
+
+  useEffect(() => {
+    const checkLogin = () => {
+      fetch('http://localhost:5005/checkLogin', {
+        credentials: 'include',
+      })
+        .then(res => res.json())
+        .then(status => handleStatus(status));
+    };
+    checkLogin();
+  }, []);
 
   const handleSearch = data => {
     let apiUrl = null;

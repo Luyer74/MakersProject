@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   FormControl,
@@ -17,6 +17,23 @@ const Create = () => {
   const [date, setDate] = useState('');
   const [updates, setUpdates] = useState([{ title: '', points: [''] }]);
   const navigate = useNavigate();
+
+  const handleStatus = status => {
+    if (status.status != 'OK') {
+      navigate('/');
+    }
+  };
+
+  useEffect(() => {
+    const checkLogin = () => {
+      fetch('http://localhost:5005/checkLogin', {
+        credentials: 'include',
+      })
+        .then(res => res.json())
+        .then(status => handleStatus(status));
+    };
+    checkLogin();
+  }, []);
 
   const addUpdate = e => {
     let temp = [...updates];
